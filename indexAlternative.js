@@ -51,7 +51,7 @@ const gcodeFile = new GCodeFile();
 gcodeFile.updateCoordsArea(210, 297); // Update based on your SVG dimensions
 
 // Read SVG file
-const svgContent = fs.readFileSync('path_to_your_svg_file.svg', 'utf8');
+const svgContent = fs.readFileSync('live laugh love in block letters.svg', 'utf8');
 
 // Extract path data from SVG content
 const pathRegex = /<path\s+d="([^"]+)"/g;
