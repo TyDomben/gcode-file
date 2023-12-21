@@ -1,6 +1,9 @@
-const { mapRange } = require('canvas-sketch-util/math')
-const { clipPolylinesToBox } = require('canvas-sketch-util/geometry')
-const { contain } = require('./intrinsic-scale')
+const { mapRange } = require('canvas-sketch-util/math');
+const { clipPolylinesToBox } = require('canvas-sketch-util/geometry');
+const { contain } = require('./intrinsic-scale');
+const svgPathParser = require('svg-path-parser');
+const fs = require('fs');
+const path = require('path');
 
 const defaultConfig = {
   feedRate: 8000, // G1 movement (drawing speed)
@@ -13,7 +16,7 @@ const defaultConfig = {
   margin: 10,
   flipX: false,
   flipY: false
-}
+};
 
 class GCodeFile {
   constructor(config) {
@@ -24,6 +27,13 @@ class GCodeFile {
     this.normalizeMargin()
     this.updateDrawArea()
     this.clear()
+  }
+
+  // New method to add SVG paths
+  addSVG(svgPath) {
+    const parsedPath = svgPathParser.parseSVG(svgPath);
+    const polylines = convertPathToPolylines(parsedPath);
+    this.addPolylines(polylines);
   }
 
   clear(){

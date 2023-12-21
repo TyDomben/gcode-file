@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/lavolpecheprogramma/gcode-file#readme",
   "dependencies": {
-    "canvas-sketch-util": "^1.10.0"
+    "canvas-sketch-util": "^1.10.0",
+    "svg-path-parser": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
